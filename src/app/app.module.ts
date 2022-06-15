@@ -8,11 +8,12 @@ import { AppComponent } from './app.component';
 import { SpartacusModule } from './spartacus/spartacus.module';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { CustomRoutingModule } from "./custom-routing.module";
+import { DemoModule } from "./custom-components/demo/demo.module";
+import { CmsConfig, provideConfig } from "@spartacus/core";
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
     HttpClientModule,
@@ -24,11 +25,25 @@ import { environment } from '../environments/environment';
       enabled: environment.production,
       // Register the ServiceWorker as soon as the app is stable
       // or after 30 seconds (whichever comes first).
-      registrationStrategy: 'registerWhenStable:30000'
+      registrationStrategy: 'registerWhenStable:30000',
     }),
-    BrowserTransferStateModule
+    BrowserTransferStateModule,
+    CustomRoutingModule,
+    // DemoModule,
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [
+    provideConfig(<CmsConfig>{
+      featureModules: {
+        DemoModule: {
+          module: () =>
+            import('./custom-components/demo/demo.module').then(
+              (m) => m.DemoModule
+            ),
+          cmsComponents: ['DemoComponent'],
+        },
+      },
+    }),
+  ],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
