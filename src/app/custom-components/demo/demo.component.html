@@ -1,1 +1,25 @@
-<p>demo works!!</p>
+<div tabindex="-1" role="dialog">
+  <div class="modal-content">
+    <div class="modal-header d-flex justify-content-center">
+      <h2 class="modal-title">Modal title</h2>
+    </div>
+    <div class="modal-body">
+      <p>Modal body text goes here.</p>
+      <router-outlet></router-outlet>
+    </div>
+    <div class="modal-footer">
+      <button (click)="previousSlide()" type="button" class="btn btn-primary">
+        Poprzedni
+      </button>
+
+      <button
+        (click)="nextSlide()"
+        type="button"
+        class="btn btn-secondary"
+        data-dismiss="modal"
+      >
+        Następny
+      </button>
+    </div>
+  </div>
+</div>

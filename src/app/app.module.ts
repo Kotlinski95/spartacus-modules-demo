@@ -32,17 +32,17 @@ import { CmsConfig, provideConfig } from "@spartacus/core";
     // DemoModule,
   ],
   providers: [
-    provideConfig(<CmsConfig>{
-      featureModules: {
-        DemoModule: {
-          module: () =>
-            import('./custom-components/demo/demo.module').then(
-              (m) => m.DemoModule
-            ),
-          cmsComponents: ['DemoComponent'],
-        },
-      },
-    }),
+    // provideConfig(<CmsConfig>{
+    //   featureModules: {
+    //     DemoModule: {
+    //       module: () =>
+    //         import('./custom-components/demo/demo.module').then(
+    //           (m) => m.DemoModule
+    //         ),
+    //       cmsComponents: ['DemoComponent'],
+    //     },
+    //   },
+    // }),
   ],
   bootstrap: [AppComponent],
 })
