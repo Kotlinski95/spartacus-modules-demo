@@ -11,9 +11,11 @@ import { environment } from '../environments/environment';
 import { CustomRoutingModule } from "./custom-routing.module";
 import { DemoModule } from "./custom-components/demo/demo.module";
 import { CmsConfig, provideConfig } from "@spartacus/core";
+import { DemoHomePageComponent } from './custom-components/demo-home-page/demo-home-page.component';
+import { DemoService } from "./services/demo.service";
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, DemoHomePageComponent],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
     HttpClientModule,
@@ -43,6 +45,15 @@ import { CmsConfig, provideConfig } from "@spartacus/core";
     //     },
     //   },
     // }),
+    
+    DemoService,
+    provideConfig(<CmsConfig>{
+      cmsComponents: {
+        DemoHomePageComponent: {
+          component: DemoHomePageComponent,
+        },
+      },
+    }),
   ],
   bootstrap: [AppComponent],
 })

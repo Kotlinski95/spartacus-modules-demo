@@ -2,6 +2,7 @@ import { Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { DemoService } from 'src/app/services/demo.service';
 
 type Params = {
   [key: string]: any;
@@ -11,13 +12,18 @@ type Params = {
   selector: 'app-demo',
   templateUrl: './demo.component.html',
   styleUrls: ['./demo.component.scss'],
+  // providers: [DemoService],
 })
 export class DemoComponent implements OnInit {
   slide$: Observable<number> = new Observable();
   slideParam: Params = {
     slide: 1,
   };
-  constructor(private router: Router, private route: ActivatedRoute) {
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private demoService: DemoService
+  ) {
     console.log('DEMO COMPONENT INIT');
   }
 
@@ -26,7 +32,7 @@ export class DemoComponent implements OnInit {
       tap((param: any) => {
         console.log(param);
       }),
-      map(param => param.slide)
+      map((param) => param.slide)
     );
     this.slide$.subscribe((param) => {
       console.log(param);
@@ -37,7 +43,7 @@ export class DemoComponent implements OnInit {
 
   nextSlide(): void {
     this.slideParam.slide += 1;
-    this.router.navigate([], {
+    this.router.navigate(['2'], {
       relativeTo: this.route,
       queryParams: this.slideParam,
       queryParamsHandling: 'merge', // remove to replace all query params by provided
@@ -46,7 +52,7 @@ export class DemoComponent implements OnInit {
 
   previousSlide(): void {
     this.slideParam.slide -= 1;
-    this.router.navigate([], {
+    this.router.navigate(['1'], {
       relativeTo: this.route,
       queryParams: this.slideParam,
       queryParamsHandling: 'merge', // remove to replace all query params by provided
@@ -54,10 +60,13 @@ export class DemoComponent implements OnInit {
   }
 
   getCurrentSlide(): void {
-        this.router.navigate([], {
-          relativeTo: this.route,
-          queryParams: this.slideParam,
-          queryParamsHandling: 'merge', // remove to replace all query params by provided
-        });
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: this.slideParam,
+      queryParamsHandling: 'merge', // remove to replace all query params by provided
+    });
+  }
+  sayHi() {
+    this.demoService.sayHello();
   }
 }

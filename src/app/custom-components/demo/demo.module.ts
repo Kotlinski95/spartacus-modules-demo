@@ -11,6 +11,7 @@ import { CmsConfig, provideConfig } from '@spartacus/core';
 import { Slide1Component } from './slides/slide1/slide1.component';
 import { Slide2Component } from './slides/slide2/slide2.component';
 import { SlidesModule } from './slides/slides.module';
+import { DemoService } from 'src/app/services/demo.service';
 
 class customCmsPageGuard {
   canActivate(): boolean {
@@ -34,7 +35,6 @@ class customCmsPageGuard {
       //     { path: 'tags', component: Slide2Component, canActivate: [CmsPageGuard] },
       //   ],
       // },
-
       // {
       //   path: 'end',
       //   loadChildren: () =>
@@ -48,7 +48,7 @@ class customCmsPageGuard {
     //   position: OutletPosition.REPLACE,
     //   component: DemoComponent,
     // }),
-
+    DemoService,
     provideConfig(<CmsConfig>{
       cmsComponents: {
         DemoComponent: {

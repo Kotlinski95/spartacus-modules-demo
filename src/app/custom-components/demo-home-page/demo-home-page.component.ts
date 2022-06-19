@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { DemoService } from 'src/app/services/demo.service';
 
 @Component({
-  selector: 'app-slide1',
-  templateUrl: './slide1.component.html',
-  styleUrls: ['./slide1.component.scss'],
+  selector: 'app-demo-home-page',
+  templateUrl: './demo-home-page.component.html',
+  styleUrls: ['./demo-home-page.component.scss'],
 })
-export class Slide1Component implements OnInit {
+export class DemoHomePageComponent implements OnInit {
   constructor(private demoService: DemoService) {}
 
   ngOnInit(): void {}
