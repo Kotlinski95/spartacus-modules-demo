@@ -1,0 +1,185 @@
+<ng-container *ngIf="seletedSlide$ | async as seletedSlide">
+  <div [ngSwitch]="seletedSlide" class="mt-3">
+    <ng-container *ngSwitchCase="1">
+      <div>
+        <h2 class="text-center">O czym będzie mowa?</h2>
+        <!-- // ****** path changing ******* -->
+        <!-- <ol>
+          <li><a [routerLink]="['/demo/2']" >Czym jest moduł w Angularze</a></li>
+          <li><a [routerLink]="['/demo/3']">Dodawanie nowych modułów, komponentów.</a></li>
+          <li><a [routerLink]="['/demo/4']">Integracja modułów/komponentów w Spartacus SmartEdit.</a></li>
+        </ol> -->
+
+        <ol>
+          <li>
+            <a [routerLink]="[]" [queryParams]="{ slide: '2' }"
+              >Czym jest moduł w Angularze</a
+            >
+          </li>
+
+          <li>
+            <a [routerLink]="[]" [queryParams]="{ slide: '3' }"
+              >Dodawanie nowych modułów, komponentów.</a
+            >
+          </li>
+          <li>
+            <a [routerLink]="[]" [queryParams]="{ slide: '4' }">
+              Module Injector Tree</a
+            >
+          </li>
+          <li>
+            <a [routerLink]="[]" [queryParams]="{ slide: '5' }"
+              >Demo zależności modułów.</a
+            >
+          </li>
+          <li>
+            <a [routerLink]="[]" [queryParams]="{ slide: '5' }"
+              >Integracja modułów/komponentów w Spartacus SmartEdit.</a
+            >
+          </li>
+        </ol>
+
+        <p></p>
+      </div>
+    </ng-container>
+    <ng-container *ngSwitchCase="2">
+      <div>
+        <h2>Trochę o modułach</h2>
+        <ul>
+          <li>
+            Aplikacja Angularowa jest podzielona na moduły (każda aplikacja
+            posiada przynajmniej jeden moduł AppModule) i ma własny system
+            modułów NgModules. Moduł to nic innego jak klasa z dekoratorem
+            @NgModule
+            <div>
+              <img
+                src="assets/slide2/1.png"
+                alt=""
+                class="d-block mw-100 mb-3"
+              />
+            </div>
+          </li>
+          <li>
+            Czym właściwie jest dekorator? Dekoratory są funkcjami, które
+            modyfikują klasy JavaScript. Angular ma wiele dekoratorów, które
+            dołączają metadane do klas, co pozwala na określenie znaczenia tych
+            klas i sposobu ich działania (pojęcie dekoratorów istnieje również w
+            czystym JavaScripcie). Dekortory pobieramy importujemy z paczki
+            @angular/core
+            <div>
+              <img
+                src="assets/slide2/2.png"
+                alt=""
+                class="d-block mw-100 mb-3"
+              />
+            </div>
+          </li>
+          <li>
+            NgModule jest funkcją dekoratora, która przyjmuje jeden obiekt z
+            metadanymi, których właściwości opisują moduł. Najważniejsze
+            właściwości to: declarations , exports, imports, providers,
+            bootstrap.
+          </li>
+          <li>
+            W aplikacji istnieje zawsze moduł główny, który uruchamiany jest w
+            pliku main.ts i przekazywany do funkcji bootstrapModule, która
+            tworzy instację naszego modułu.
+            <div>
+              <img
+                src="assets/slide2/3.png"
+                alt=""
+                class="d-block mw-100 mb-3"
+              />
+            </div>
+          </li>
+          <li>
+            Sam Angular jest dostarczony jako kolekcja modułów JavaScript, jest
+            to pewnego rodzaju biblioteka modułów.
+          </li>
+        </ul>
+        <p>
+          Więcej informacji o modułach
+          <a
+            href="https://angular.io/guide/architecture-modules"
+            target="_blank"
+            >tutaj</a
+          >
+        </p>
+      </div>
+    </ng-container>
+    <ng-container *ngSwitchCase="3">
+      <h2 class="text-center">Tworzenie nowego modułu</h2>
+      <p>
+        Aby utworzyć moduł, musisz albo użyć polecenia ng generate module
+        nazwa_modułu korzystając z Angular CLI, albo ręcznie utworzyć klasę,
+        która jest ozdobiona dekoratorem @NgModule
+      </p>
+      <div>
+        <code>
+          <pre>{{ codeGenerateModule }}</pre>
+        </code>
+      </div>
+      <h2 class="text-center">Tworzenie nowego komponentu</h2>
+      <p>
+        można również użyć skrótu ng g m nazwa_modułu. Podobnie można utworzyć
+        komponent, angular CLI samo zadeklaruje nam komponent w najbliżym
+        module. Przykładowo komenga ng g c nazwa_komponentu utworzy komponent z
+        plikami styli, html, ts i plikiem spec.ts zawierającym testy jednostkowe
+        dla danego komponeentu.
+      </p>
+      <div>
+        <code>
+          <pre>{{ codeGenerateComponent }}</pre>
+        </code>
+      </div>
+
+      <!-- <div class="d-flex justify-content-center align-items-center">
+        <img src="assets/slide3/1.png" alt="" class="d-block mw-100 mb-3" />
+      </div> -->
+    </ng-container>
+    <ng-container *ngSwitchCase="4">
+      <h2 class="text-center">Module Injector Tree</h2>
+      <p class="text-center">
+        Angular tworzy hierarchie modułów dla usług, które mają być dostarczane
+        na poziomie poszczególnego modułu.
+      </p>
+      <div class="d-flex justify-content-center align-items-center">
+        <img src="assets/slide4/1.png" alt="" class="d-block mb-3" />
+      </div>
+      <h2 class="text-center">Element Injector Tree</h2>
+      <p class="text-center">
+        Angular tworzy drzewo Element Injector dla usług, które mają być
+        dostarczane na poziomie elementu, takich jak komponenty i dyrektywy.
+      </p>
+      <div class="d-flex justify-content-center align-items-center">
+        <img src="assets/slide4/2.png" alt="" class="d-block mb-3" />
+      </div>
+      <p class="text-right">
+        źródło:
+        <a
+          href="https://www.tektutorialshub.com/angular/how-dependency-injection-resolution-works-in-angular/
+"
+          target="_blank>"
+          >tutaj</a
+        >
+      </p>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="5">
+      <h2 class="text-center">Demo zależności modułów</h2>
+      <p class="text-center">
+        Angular tworzy hierarchie modułów dla usług, które mają być dostarczane
+        na poziomie poszczególnego modułu.
+      </p>
+      <div class="d-flex justify-content-center">
+        <button (click)="sayHi()" type="button" class="btn btn-success">
+          Demo
+        </button>
+      </div>
+    </ng-container>
+
+    <ng-container *ngSwitchDefault>
+      <h2>Ups... We don't have content for this page</h2>
+    </ng-container>
+  </div>
+</ng-container>

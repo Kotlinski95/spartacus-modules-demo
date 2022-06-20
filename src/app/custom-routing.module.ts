@@ -5,6 +5,7 @@ import { DemoComponent } from './custom-components/demo/demo.component';
 import { Slide1Component } from './custom-components/demo/slides/slide1/slide1.component';
 import { CmsPageGuard } from '@spartacus/storefront';
 import { Slide2Component } from './custom-components/demo/slides/slide2/slide2.component';
+import { SlidesComponent } from './custom-components/demo/slides/slides.component';
 
 const STATIC_ROUTES: Routes = [
   // ********* Loading demo page and children pages without lazyloading *********
@@ -20,15 +21,26 @@ const STATIC_ROUTES: Routes = [
   // },
 
   // ********* Loading demo page and children pages with lazyloading *********
-  {
-    path: 'demo',
-    component: DemoComponent,
-    canActivate: [CmsPageGuard],
-    loadChildren: () =>
-      import('./custom-components/demo/slides/slides.module').then(
-        (m) => m.SlidesModule
-      ),
-  },
+  // {
+  //   path: 'demo',
+  //   component: DemoComponent,
+  //   canActivate: [CmsPageGuard],
+  //   loadChildren: () =>
+  //     import('./custom-components/demo/slides/slides.module').then(
+  //       (m) => m.SlidesModule
+  //     ),
+  // },
+
+  // ********* Loading demo page and children pages with CMS page settings enabled (additional lazyloaded slidesmodules) *********
+  // {
+  //   path: 'demo',
+  //   component: DemoComponent,
+  //   canActivate: [CmsPageGuard],
+  //   loadChildren: () =>
+  //     import('./custom-components/demo/slides/slides.module').then(
+  //       (m) => m.SlidesModule
+  //     ),
+  // },
 ];
 
 @NgModule({

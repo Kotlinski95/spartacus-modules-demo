@@ -1,12 +1,16 @@
 <div tabindex="-1" role="dialog">
   <div class="modal-content">
     <div class="modal-header d-flex justify-content-center">
-      <h2 class="modal-title">Modal title</h2>
+      <h2 class="modal-title">Angular Modules and Components</h2>
     </div>
     <div class="modal-body">
-      <p>Modal body text goes here.</p>
-      <button (click)="sayHi()" type="button" class="btn btn-success">Say Hello 1</button>
-      <router-outlet></router-outlet>
+      <!-- <button (click)="sayHi()" type="button" class="btn btn-success">Say Hello 1</button> -->
+
+       <!-- ****** path changing ******* -->
+      <!-- <router-outlet></router-outlet> -->
+
+      <!-- ****** queryParams changing ******* -->
+      <app-slides></app-slides>
     </div>
     <div class="modal-footer">
       <button (click)="previousSlide()" type="button" class="btn btn-primary">

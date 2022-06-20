@@ -1,18 +1,26 @@
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { BrowserModule, BrowserTransferStateModule } from '@angular/platform-browser';
-import { EffectsModule } from "@ngrx/effects";
-import { StoreModule } from "@ngrx/store";
-import { AppRoutingModule } from "@spartacus/storefront";
+import {
+  BrowserModule,
+  BrowserTransferStateModule,
+} from '@angular/platform-browser';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
+import {
+  AppRoutingModule,
+  OutletPosition,
+  provideOutlet,
+} from '@spartacus/storefront';
 import { AppComponent } from './app.component';
 import { SpartacusModule } from './spartacus/spartacus.module';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
-import { CustomRoutingModule } from "./custom-routing.module";
-import { DemoModule } from "./custom-components/demo/demo.module";
-import { CmsConfig, provideConfig } from "@spartacus/core";
+import { CustomRoutingModule } from './custom-routing.module';
+import { DemoModule } from './custom-components/demo/demo.module';
+import { CmsConfig, ConfigModule, provideConfig } from '@spartacus/core';
 import { DemoHomePageComponent } from './custom-components/demo-home-page/demo-home-page.component';
-import { DemoService } from "./services/demo.service";
+import { DemoService } from './services/demo.service';
+import { Slide2Component } from './custom-components/demo/slides/slide2/slide2.component';
 
 @NgModule({
   declarations: [AppComponent, DemoHomePageComponent],
@@ -31,7 +39,38 @@ import { DemoService } from "./services/demo.service";
     }),
     BrowserTransferStateModule,
     CustomRoutingModule,
-    // DemoModule,
+    DemoModule,
+    // ConfigModule.withConfig({
+    //   layoutSlots: {
+    //     header: {
+    //       lg: {
+    //         slots: [
+    //           'SiteLogo',
+    //           // 'SiteContext',
+    //           'SearchBox',
+    //           'SiteLogin',
+    //           'MiniCart',
+    //           'SiteLinks',
+    //           'NavigationBar',
+    //         ],
+    //       },
+    //     },
+    //     LandingPage2Template: {
+    //       lg: {
+    //         slots: ['Section1', 'Section5', 'Section4'],
+    //       },
+    //       slots: ['Section5', 'Section4'],
+    //     },
+    //   },
+    // }),
+    // ****** Show another way to replace existing components with DemoHomePageComponent */
+    // ConfigModule.withConfig({
+    //   cmsComponents: {
+    //     DemoHomePageComponent: {
+    //       component: DemoHomePageComponent,
+    //     },
+    //   },
+    // } as CmsConfig),
   ],
   providers: [
     // provideConfig(<CmsConfig>{
@@ -45,7 +84,7 @@ import { DemoService } from "./services/demo.service";
     //     },
     //   },
     // }),
-    
+
     DemoService,
     provideConfig(<CmsConfig>{
       cmsComponents: {
@@ -54,6 +93,12 @@ import { DemoService } from "./services/demo.service";
         },
       },
     }),
+
+    // provideOutlet({
+    //   id: 'BottomHeaderSlot',
+    //   position: OutletPosition.REPLACE,
+    //   component: Slide2Component,
+    // }),
   ],
   bootstrap: [AppComponent],
 })
