@@ -3,13 +3,6 @@
     <ng-container *ngSwitchCase="1">
       <div>
         <h2 class="text-center">O czym będzie mowa?</h2>
-        <!-- // ****** path changing ******* -->
-        <!-- <ol>
-          <li><a [routerLink]="['/demo/2']" >Czym jest moduł w Angularze</a></li>
-          <li><a [routerLink]="['/demo/3']">Dodawanie nowych modułów, komponentów.</a></li>
-          <li><a [routerLink]="['/demo/4']">Integracja modułów/komponentów w Spartacus SmartEdit.</a></li>
-        </ol> -->
-
         <ol>
           <li>
             <a [routerLink]="[]" [queryParams]="{ slide: '2' }"
@@ -33,7 +26,7 @@
             >
           </li>
           <li>
-            <a [routerLink]="[]" [queryParams]="{ slide: '5' }"
+            <a [routerLink]="[]" [queryParams]="{ slide: '6' }"
               >Integracja modułów/komponentów w Spartacus SmartEdit.</a
             >
           </li>
@@ -132,10 +125,6 @@
           <pre>{{ codeGenerateComponent }}</pre>
         </code>
       </div>
-
-      <!-- <div class="d-flex justify-content-center align-items-center">
-        <img src="assets/slide3/1.png" alt="" class="d-block mw-100 mb-3" />
-      </div> -->
     </ng-container>
     <ng-container *ngSwitchCase="4">
       <h2 class="text-center">Module Injector Tree</h2>
@@ -176,6 +165,73 @@
           Demo
         </button>
       </div>
+    </ng-container>
+    <ng-container er *ngSwitchCase="6">
+      <h2>Integracja modułów/komponentów w Spartacus SmartEdit.</h2>
+      <p>
+        Przejdźmy teraz do momentu umieszczenia utworzonego wcześniej komponentu
+        na stronie za pomocą narzędzia spartacus. Aby skorzystać z komponentu
+        utworzonego w SmartEdit, należy wykorzystać service 'ProvideConfig',
+        który umieści nasz komponent i zastąpi ten utworzony w SmartEdit jako
+        CMSFlexComponent.
+      </p>
+      <div>
+        <code>
+          <pre>{{ codeNewTestModuleService }}</pre>
+        </code>
+      </div>
+      <p>
+        Możemy też zaimportować moduł 'ModuleTestComponent', który posaida
+        statyczną metodę, która również zrealizuje tę samą funkcję.
+      </p>
+      <div>
+        <code>
+          <pre>{{ codeNewTestModule }}</pre>
+        </code>
+      </div>
+      <p>
+        Należy również pamiętać o prawidłowym zaimportowaniu modułu np. w
+        app.module.ts, aby funkcjonalność działała poprawnie :)
+      </p>
+      <p>
+        Następnie przechodzimy do
+        <a target="_blank" href="https://localhost:9002/smartedit">SmartEdit</a>
+        i logujemy się jako administrator:
+      </p>
+      <div class="d-flex justify-content-center align-items-center">
+        <img src="assets/slide6/1.png" alt="" class="d-block mb-3" />
+      </div>
+      <p>Wybieramy dany sklep i katalog i przechodzimy do preview sklepu</p>
+      <div class="d-flex justify-content-center align-items-center">
+        <img src="assets/slide6/2.png" alt="" class="d-block mb-3" />
+      </div>
+      <p>
+        Przechodzimy na konkretną stronę, zmieniamy widok na tryb edycji i
+        dodajemy nowy komponent:
+      </p>
+      <div class="d-flex justify-content-center align-items-center">
+        <img src="assets/slide6/3.png" alt="" class="d-block mb-3" />
+      </div>
+      <p>
+        Wśród dostępnych komponentów wybieramy np. CMSFlexComponent, który jest
+        jednym z najprostszych komponentów i nie posiada wielu wbudowanych
+        opcji.
+      </p>
+      <div class="d-flex justify-content-center align-items-center">
+        <img src="assets/slide6/4.png" alt="" class="d-block mb-3" />
+      </div>
+      <p>
+        Wybieramy nazwę komponentu oraz FlexType, po którym identyfikujemy
+        komponent w kodzie. Należy zwrócić uwagę, aby FlexType był zgodny z tym
+        co mamy podane np. w serwisie 'provideConfig' lub module 'ConfigModule'
+      </p>
+      <div class="d-flex justify-content-center align-items-center">
+        <img src="assets/slide6/5.png" alt="" class="d-block mb-3" />
+      </div>
+    </ng-container>
+
+    <ng-container er *ngSwitchCase="7">
+      <h2>Dziękuję za uwagę! <span [innerHTML]="customEmoji"></span></h2>
     </ng-container>
 
     <ng-container *ngSwitchDefault>

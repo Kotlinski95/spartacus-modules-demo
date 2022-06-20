@@ -20,7 +20,6 @@ import { DemoModule } from './custom-components/demo/demo.module';
 import { CmsConfig, ConfigModule, provideConfig } from '@spartacus/core';
 import { DemoHomePageComponent } from './custom-components/demo-home-page/demo-home-page.component';
 import { DemoService } from './services/demo.service';
-import { Slide2Component } from './custom-components/demo/slides/slide2/slide2.component';
 
 @NgModule({
   declarations: [AppComponent, DemoHomePageComponent],
@@ -33,36 +32,12 @@ import { Slide2Component } from './custom-components/demo/slides/slide2/slide2.c
     SpartacusModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
-      // Register the ServiceWorker as soon as the app is stable
-      // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000',
     }),
     BrowserTransferStateModule,
     CustomRoutingModule,
-    DemoModule,
-    // ConfigModule.withConfig({
-    //   layoutSlots: {
-    //     header: {
-    //       lg: {
-    //         slots: [
-    //           'SiteLogo',
-    //           // 'SiteContext',
-    //           'SearchBox',
-    //           'SiteLogin',
-    //           'MiniCart',
-    //           'SiteLinks',
-    //           'NavigationBar',
-    //         ],
-    //       },
-    //     },
-    //     LandingPage2Template: {
-    //       lg: {
-    //         slots: ['Section1', 'Section5', 'Section4'],
-    //       },
-    //       slots: ['Section5', 'Section4'],
-    //     },
-    //   },
-    // }),
+    // DemoModule,
+
     // ****** Show another way to replace existing components with DemoHomePageComponent */
     // ConfigModule.withConfig({
     //   cmsComponents: {
@@ -73,17 +48,17 @@ import { Slide2Component } from './custom-components/demo/slides/slide2/slide2.c
     // } as CmsConfig),
   ],
   providers: [
-    // provideConfig(<CmsConfig>{
-    //   featureModules: {
-    //     DemoModule: {
-    //       module: () =>
-    //         import('./custom-components/demo/demo.module').then(
-    //           (m) => m.DemoModule
-    //         ),
-    //       cmsComponents: ['DemoComponent'],
-    //     },
-    //   },
-    // }),
+    provideConfig(<CmsConfig>{
+      featureModules: {
+        DemoModule: {
+          module: () =>
+            import('./custom-components/demo/demo.module').then(
+              (m) => m.DemoModule
+            ),
+          cmsComponents: ['DemoComponent'],
+        },
+      },
+    }),
 
     DemoService,
     provideConfig(<CmsConfig>{
@@ -93,12 +68,6 @@ import { Slide2Component } from './custom-components/demo/slides/slide2/slide2.c
         },
       },
     }),
-
-    // provideOutlet({
-    //   id: 'BottomHeaderSlot',
-    //   position: OutletPosition.REPLACE,
-    //   component: Slide2Component,
-    // }),
   ],
   bootstrap: [AppComponent],
 })

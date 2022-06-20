@@ -4,16 +4,14 @@
       <h2 class="modal-title">Angular Modules and Components</h2>
     </div>
     <div class="modal-body">
-      <!-- <button (click)="sayHi()" type="button" class="btn btn-success">Say Hello 1</button> -->
-
-       <!-- ****** path changing ******* -->
-      <!-- <router-outlet></router-outlet> -->
-
-      <!-- ****** queryParams changing ******* -->
       <app-slides></app-slides>
     </div>
-    <div class="modal-footer">
-      <button (click)="previousSlide()" type="button" class="btn btn-primary">
+    <div class="modal-footer" *ngIf="(slide$ | async) as slide">
+      
+      <a [routerLink]="[]" [queryParams]="{ slide: '1' }" type="button" class="btn btn-success" *ngIf="slide > 2 && slide <= 7">
+        Początek
+      </a>
+      <button (click)="previousSlide()" type="button" class="btn btn-primary" *ngIf="slide > 1 && slide <= 7">
         Poprzedni
       </button>
 
@@ -22,6 +20,7 @@
         type="button"
         class="btn btn-secondary"
         data-dismiss="modal"
+        *ngIf="slide < 7"
       >
         Następny
       </button>
