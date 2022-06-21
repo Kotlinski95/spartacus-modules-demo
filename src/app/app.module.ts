@@ -20,6 +20,7 @@ import { DemoModule } from './custom-components/demo/demo.module';
 import { CmsConfig, ConfigModule, provideConfig } from '@spartacus/core';
 import { DemoHomePageComponent } from './custom-components/demo-home-page/demo-home-page.component';
 import { DemoService } from './services/demo.service';
+import { ModuleTestModule } from './custom-components/module-test/module-test.module';
 
 @NgModule({
   declarations: [AppComponent, DemoHomePageComponent],
@@ -37,7 +38,7 @@ import { DemoService } from './services/demo.service';
     BrowserTransferStateModule,
     CustomRoutingModule,
     // DemoModule,
-
+    ModuleTestModule,
     // ****** Show another way to replace existing components with DemoHomePageComponent */
     // ConfigModule.withConfig({
     //   cmsComponents: {

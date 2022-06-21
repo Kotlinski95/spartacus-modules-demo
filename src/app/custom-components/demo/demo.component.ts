@@ -12,7 +12,6 @@ type Params = {
   selector: 'app-demo',
   templateUrl: './demo.component.html',
   styleUrls: ['./demo.component.scss'],
-  // providers: [DemoService],
 })
 export class DemoComponent implements OnInit, OnDestroy {
   subscription: Subscription = new Subscription();

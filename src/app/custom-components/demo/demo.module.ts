@@ -17,16 +17,16 @@ import { RouterModule } from '@angular/router';
       layoutSlots: {
         ContentPage1Template: {
           lg: {
-            slots: ['Section2A', 'Section2B', 'Section4'],
+            slots: ['Section2A', 'Section2B'],
           },
-          slots: ['Section5', 'Section4'],
+          slots: [],
         },
       },
     }),
   ],
   providers: [
     // **** If called in lazyloaded demo module it creates new instance of service ****
-    DemoService,
+    // DemoService,
 
     // **** Overwrite CMS Flex Component with DemoComponent content ****
     provideConfig(<CmsConfig>{
